@@ -1,0 +1,19 @@
+{
+    "name": "dynamicForms",
+    "description": "",
+    "keywords": [
+        "heroku",
+        "buildpack",
+        "PHP",
+        "Composer",
+        "Node.js",
+        "npm",
+        "Bower"
+    ],
+    "website": "http://dynforms.herokuapp.com",
+    "repository": "https://github.com/salvagit/dynamicForms",
+    "success_url": "/",
+    "env": {
+        "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-multi"
+    }
+}
