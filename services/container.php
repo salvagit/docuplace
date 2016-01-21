@@ -10,13 +10,13 @@ $container['db'] = $container->share(function($container) {
     $dsn = sprintf(
         '%s:host=%s;port=%s;dbname=%s',
         'mysql',
-        DB_HOST,
+        ENV['DB_HOST'],
         '3306',
-        DB_NAME
+        ENV['DB_NAME']
     );
 
-    $user = DB_USER;
-    $pass = DB_PASS;
+    $user = ENV['DB_USER'];
+    $pass = ENV['DB_PASS'];
 
     RedBeanPHP\R::setup($dsn, $user, $pass);
     return new RedBeanPHP\R;
