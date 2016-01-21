@@ -23,13 +23,13 @@ $container['db'] = $container->share(function($container) {
     $dsn = sprintf(
         '%s:host=%s;port=%s;dbname=%s',
         'mysql',
-        'us-cdbr-iron-east-02.cleardb.net',
+        'us-cdbr-iron-east-03.cleardb.net',
         '3306',
-        'heroku_f48cac587cefc1b'
+        'heroku_b5392a2dc029bc8'
     );
 
-    $user = 'bc5fc2d8f36cfe';
-    $pass = '30370d49';
+    $user = 'ba461e9c0981c5';
+    $pass = 'eb160774';
 
     RedBeanPHP\R::setup($dsn, $user, $pass);
     return new RedBeanPHP\R;
