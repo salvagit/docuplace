@@ -3,12 +3,12 @@
     "type"        : "library",
     "description" : "Create liquid data",
     "keywords"    : ["forms, dynamic, elastic, liquid"],
-    "homepage"    : "http://github.com/salvagit/dynamicforms",
+    "homepage"    : "http://github.com/salvagit/docuplace",
     "license"     : "MIT",
     "authors"     : [
         {
             "name"  : "salvadorp",
-            "email" : "salvador.palmiciano@gmail.com"
+            "email" : "s@salvadorp.com"
         }
     ],
     "require": {

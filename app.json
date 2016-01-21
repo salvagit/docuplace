@@ -1,5 +1,5 @@
 {
-    "name": "dynamicForms",
+    "name": "docuplace",
     "description": "",
     "keywords": [
         "heroku",
@@ -10,8 +10,8 @@
         "npm",
         "Bower"
     ],
-    "website": "http://dynforms.herokuapp.com",
-    "repository": "https://github.com/salvagit/dynamicForms",
+    "website": "http://docuplace.herokuapp.com",
+    "repository": "https://github.com/salvagit/docuplace",
     "success_url": "/",
     "env": {
         "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-multi"
