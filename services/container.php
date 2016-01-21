@@ -7,29 +7,16 @@ $container = new Pimple;
 
 $container['db'] = $container->share(function($container) {
 
-    /**
-     * @todo get data from external conf.
-     * 
-     */
-    /*
     $dsn = sprintf(
         '%s:host=%s;port=%s;dbname=%s',
         'mysql',
-        'localhost',
+        DB_HOST,
         '3306',
-        'df'
-    );
-     */
-    $dsn = sprintf(
-        '%s:host=%s;port=%s;dbname=%s',
-        'mysql',
-        'us-cdbr-iron-east-03.cleardb.net',
-        '3306',
-        'heroku_b5392a2dc029bc8'
+        DB_NAME
     );
 
-    $user = 'ba461e9c0981c5';
-    $pass = 'eb160774';
+    $user = DB_USER;
+    $pass = DB_PASS;
 
     RedBeanPHP\R::setup($dsn, $user, $pass);
     return new RedBeanPHP\R;
