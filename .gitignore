@@ -1,0 +1,6 @@
+vendor/
+node_modules/
+www/assets/components
+.phpintel/
+.DS_Store
+*/.DS_Store
