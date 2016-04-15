@@ -3,7 +3,7 @@
 -- Thu, 21 Jan 2016 03:59:47 +0000
 --
 
-USE `heroku_b5392a2dc029bc8`;
+USE `docuplace`;
 
 CREATE TABLE `cheques` (
    `id` int(11) unsigned not null auto_increment,
