@@ -1,7 +1,2 @@
-vendor/
 node_modules/
-www/assets/components
-config/environment.php
-.phpintel/
-.DS_Store
-*/.DS_Store
+public/assets/components/
