@@ -7,19 +7,14 @@ function Documents(db){
 Documents.prototype.saveColl = function(coll, data) {
 	var self = this;
 	return new Promise(function(resolve, reject) {
-		console.log('init promise');
 		var collection = self.db.collection(coll);
-		console.log(collection);
-		collection.save(data, function(err, doc) {
-			console.log(doc);
-			if(err) {
-				console.log(1);
-				reject(err);
-			} else {
-				console.log(2);
-				resolve(doc);
-			}
+
+		collection.save(data,
+		function(err, saved) {
+			if( err || !saved ) reject(err);
+			else resolve(saved);
 		});
+
 	});
 };
 
@@ -42,6 +37,7 @@ Documents.prototype.getColl = function(coll) {
 			else {
 				for (var key in docs) {
 					var id = docs[key]._id;
+					// @todo use template engine.
 					docs[key].actions = `<a class="edit" title="Edit" id="${id}">`
 															+ `<i class="glyphicon glyphicon-pencil"></i>`
 															+ `</a>`

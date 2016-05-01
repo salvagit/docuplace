@@ -52,12 +52,13 @@ app.get("/forms/:form/", function(req, res) {
  */
 app.post("/forms/:form/", function(req, res) {
 	var form = req.params.form;
-	var data = [];
+	var data = {};
 	for (var k in req.body) {
 		data[req.body[k].name] = req.body[k].value;
 	}
 	documents.saveColl(form, data)
 	.then(function(data) {
+console.log('then');
 		res.json(data);
 	});
 });
