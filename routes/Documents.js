@@ -4,11 +4,30 @@ function Documents(db){
 	this.db = db;
 };
 
+Documents.prototype.createColl = function(data) {
+	var self = this;
+	return new Promise(function(resolve, reject) {
+		self.db.createCollection(data.name, function(err, resp){
+			console.log(data);
+			if (!err || 1 === resp.ok) {
+				var collection = self.db.collection(data.name),
+						schema = {};
+
+				data.fields.forEach(function (el, index, arr) {
+					schema[el.name] = '';
+				});
+
+				collection.save(schema);
+				resolve(data);
+			} else reject(err);
+		});
+	});
+};
+
 Documents.prototype.saveColl = function(coll, data) {
 	var self = this;
 	return new Promise(function(resolve, reject) {
 		var collection = self.db.collection(coll);
-
 		collection.save(data,
 		function(err, saved) {
 			if( err || !saved ) reject(err);

@@ -48,6 +48,16 @@ app.get("/forms/:form/", function(req, res) {
 });
 
 /**
+ * POST /forms/
+ */
+app.post("/forms/", function(req, res) {
+	documents.createColl(req.body)
+	.then(function(data) {
+		res.json(data);
+	});
+});
+
+/**
  * POST /forms/<form>/
  */
 app.post("/forms/:form/", function(req, res) {
@@ -58,7 +68,6 @@ app.post("/forms/:form/", function(req, res) {
 	}
 	documents.saveColl(form, data)
 	.then(function(data) {
-console.log('then');
 		res.json(data);
 	});
 });
