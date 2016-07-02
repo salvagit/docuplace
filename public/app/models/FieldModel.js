@@ -5,6 +5,8 @@ function(_, Backbone) {
 
  	var FieldModel = Backbone.Model.extend({
 
+		id: '_id',
+
  		defaults: {
 			name: 'undefined',
 			type: 'undefined',

@@ -5,6 +5,8 @@ function(_, Backbone, FieldsCollection){
 
  	var FormModel = Backbone.Model.extend({
 
+		id: '_id',
+
  		url: '/forms/',
 
 		fields: {},

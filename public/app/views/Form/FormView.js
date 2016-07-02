@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone',
         'collections/FormCollection',
-        'text!templates/formTpl.html', 
+        'text!templates/formTpl.html',
         'bootbox','bootstrap-table','bootstrap-table-export'],
 function($, _, Backbone, c, tpl, bootbox) {
 
@@ -20,14 +20,19 @@ function($, _, Backbone, c, tpl, bootbox) {
 
         edit: function(e) {
             var $id = this.getElId(e);
-            var model = this.c.find(function(model){return model.get('id')==$id});
+            var model = this.c.find(function(model){return model.get('_id')==$id});
             this.addForm(model);
         },
 
         remove: function(e) {
-            var $id = this.getElId(e);
-            var model = this.c.find(function(model){return model.get('id')==$id});
-            var that = this;
+            var $id = this.getElId(e),
+                model = this.c.find(function(model){
+                  console.log(model);
+                  return model.get('_id')==$id
+                }),
+                that = this;
+console.log($id);
+console.log(this.c);
             bootbox.confirm("Are you sure?", function(result) {
                 if (result) {
                     model.destroy({
@@ -39,7 +44,7 @@ function($, _, Backbone, c, tpl, bootbox) {
                         }
                     });
                 }
-            }); 
+            });
         },
 
         getElId: function(e) {
@@ -54,7 +59,7 @@ function($, _, Backbone, c, tpl, bootbox) {
                 success:function(a,b){
                     self.c.data = b;
                     self.c.colls = [];
-                    if (b[0]) {                    
+                    if (b[0]) {
                         _.each( Object.keys(b[0]) , function(field) {
                             if ('id'!==field){
                                 self.c.colls.push({field:field,title:field});
