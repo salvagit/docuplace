@@ -8,10 +8,10 @@ function(_, Backbone) {
 		id: '_id',
 
  		defaults: {
-			name: 'undefined',
-			type: 'undefined',
-			required: 'undefined',
-			valid: 'undefined'
+			name: undefined,
+			type: undefined,
+			required: undefined,
+			valid: undefined
 		},
 
 		initialize: function () {

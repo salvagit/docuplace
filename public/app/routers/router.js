@@ -1,4 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'collections/FormsCollection', 'bootstrap'],
+define(['jquery', 'underscore', 'backbone',
+        'collections/FormsCollection', 'bootstrap'],
 function($, _, Backbone, FormsCollection) {
 
     'use stricts';
@@ -6,7 +7,6 @@ function($, _, Backbone, FormsCollection) {
     var AppRouter = Backbone.Router.extend({
 
         routes: {
-          'tests': 'tests',
           'form/:f/': 'form',
           'forms': 'forms',
           // Default
@@ -28,7 +28,7 @@ function($, _, Backbone, FormsCollection) {
         form: function (f) {
             var that = this;
             require(['views/Form/FormView'], function (v) {
-                this.f = this.f || new v;
+                this.f = this.f || new v();
                 this.f.init(f);
             });
         },
@@ -40,19 +40,11 @@ function($, _, Backbone, FormsCollection) {
             });
         },
 
-        tests: function() {
-          require(['views/TestFormsView'], function (v) {
-            (new v()).test();
-          });
-        },
-
         defaultAction: function (actions) {
           if (!actions) {
             window.location = '/#/forms';
           }
-          // console.error('No route:', actions);
         }
-
     });
 
     return {

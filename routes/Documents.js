@@ -63,7 +63,7 @@ Documents.prototype.getColl = function(coll) {
 															+ `<a class=\"remove ml10\" title=\"Remove\" id=\"${id}\">`
 															+ `<i class=\"glyphicon glyphicon-trash\"></i>`
 															+ `</a>`;
-					delete docs[key]._id
+					// delete docs[key]._id
 				}
 				resolve(docs)
 			};

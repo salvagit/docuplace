@@ -1,3 +1,6 @@
+/**
+ * Create Form View.
+ */
 define(['jquery', 'underscore', 'backbone',
         'text!templates/createFormTpl.html',
         'models/FormModel',
@@ -25,6 +28,7 @@ function($, _, Backbone, template, FormModel, FieldsCollection, FieldView) {
         },
 
         render: function() {
+console.log('create form view');
             this.$el.html(this.template());
             this.$fieldsContent = this.$el.find('.fields-container');
             this.$formName = this.$el.find('#formName');

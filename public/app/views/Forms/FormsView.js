@@ -1,3 +1,6 @@
+/**
+ * Documments List View.
+ */
 define(['jquery', 'underscore', 'backbone'],
 function($, _, Backbone) {
 

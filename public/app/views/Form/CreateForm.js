@@ -1,10 +1,17 @@
+/**
+ * Create new Documment Class.
+ */
 define(['jquery', 'underscore', 'backbone',
         'text!templates/form/create.html',
         'bootstrap'],
 function($,_,Backbone,t) {
+
     'use strict';
+
     var FormsView = new (Backbone.View.extend({
+
         t: _.template(t),
+
         events: {
             'submit #insert': 'submit',
             'click #doSave': 'save'
@@ -19,9 +26,8 @@ function($,_,Backbone,t) {
         },
 
         render: function () {
-
+            // get elements.
             this.$modalContainer = $(this.el).find('.modal-container');
-console.log(this);
             this.$modalContainer.html(this.t({name:this.c.fname,m:this.m}));
             this.$modal = this.$modalContainer.find('.modal');
             this.$form = this.$modal.find('#insert');
@@ -40,30 +46,30 @@ console.log(this);
             this.$modal.modal('show');
             return this.delegateEvents();
         },
+
         submit: function (e) {
             e.preventDefault();
             var that = this;
-            var c = {
+            var callbacks = {
                 success: function(d) {
-console.log(d);
-console.log('saved');
                     $('#table').bootstrapTable('refresh');
                     that.$modal.modal('hide');
                 },
-                error: function (er) {
-                    console.error(er);
-                }
+                error: function (err) { console.error(err); }
             };
+
             if (!this.isEdit) {
-                this.c.create(this.$form.serializeArray(),c);
+                this.c.create(this.$form.serializeArray(),callbacks);
             } else {
-console.log('saving ..');
-                this.m.save(this.$form.serializeArray(),c);
+                this.m.save(this.$form.serializeArray(),callbacks);
             }
         },
+
         save: function () {
             this.$form.trigger('submit');
         }
+
     }));
+
     return FormsView;
 });

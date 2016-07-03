@@ -1,3 +1,6 @@
+/**
+ * Document Field View.
+ */
 define(['jquery', 'underscore', 'backbone',
         'text!templates/fieldTpl.html',
         'models/FieldModel'],
@@ -8,7 +11,7 @@ function($, _, Backbone, fieldTpl, model) {
   var FieldView = Backbone.View.extend({
 
     tagName: 'li',
-    
+
     template: _.template(fieldTpl),
 
     events: {
