@@ -1,20 +1,8 @@
 {
   "name": "docuplace",
   "version": "0.0.1",
-  "homepage": "https://github.com/salvagit/docuplace",
-  "authors": [
-    "salvadorp <salvador.palmiciano@gmail.com>"
-  ],
-  "keywords": [
-    "backbone"
-  ],
   "license": "MIT",
   "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components"
-  ],
   "dependencies": {
     "backgrid": "~0.3.5",
     "bootbox": "~4.3.0",

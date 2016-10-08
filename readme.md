@@ -1,7 +1,7 @@
 noduplace
 =
 
- - clone repo
- - npm install
- - bower install
- - npm start
+  - $ npm install
+  - $ bower install
+  - $ mongod
+  - $ node app.js
