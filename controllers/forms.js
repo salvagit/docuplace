@@ -1,6 +1,8 @@
 'use stricts';
 
 const express = require('express');
+const fs = require('fs');
+const handlebars = require('handlebars');
 
 module.exports = (db) => {
 
@@ -16,20 +18,24 @@ module.exports = (db) => {
 					collection.find({},{}, (err, docs) => {
 						if(err) console.log(err);
 						else {
-							for (let key in docs) {
-								let id = docs[key]._id;
-								// @todo use template engine.
-								docs[key].actions = `<a class="edit" title="Edit" id="${id}">`
-																		+ `<i class="glyphicon glyphicon-pencil"></i>`
-																		+ `</a>`
-																		+ `<a class=\"remove ml10\" title=\"Remove\" id=\"${id}\">`
-																		+ `<i class=\"glyphicon glyphicon-trash\"></i>`
-																		+ `</a>`;
-								// delete docs[key]._id
-							}
-							// console.log(docs);
-							resolve(docs)
-						};
+							(()=>{
+								return new Promise ((resolve,reject) => {
+									fs.readFile( __dirname + '/../views/row_menu.handlebars', 'utf8', (err, source) =>
+										(err) ? reject(err) : resolve(source)
+									);
+								});
+							})()
+							.then(
+								(source) => {
+									for (let key in docs) {
+										let template = handlebars.compile(source);
+										docs[key].actions = template({ id : docs[key]._id });
+									}
+									resolve(docs);
+								},
+								err => console.log(err)
+							);
+						}
 					});
 				});
 			})(req.params.form, db)
@@ -44,7 +50,6 @@ module.exports = (db) => {
 					let collections = [];
 					db.getCollectionNames((err, colNames) => {
 						if (err) reject(err);
-						console.log(err, colNames);
 						for (let i = 0; i < colNames.length; i++) {
 							collections.push({name: colNames[i]} );
 						}
@@ -83,7 +88,7 @@ module.exports = (db) => {
 							let collection = db.collection(data.name),
 									schema = {};
 
-							data.fields.forEach( (el, index, arr)  => schema[el.name] = '' );
+							data.fields.forEach( (el, index, arr) => schema[el.name] = '' );
 
 							collection.save(schema);
 							resolve(data);
