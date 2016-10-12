@@ -70,7 +70,7 @@ module.exports = (db) => {
 		if (form) {
 			let data = {};
 			for (let k in req.body) data[req.body[k].name] = req.body[k].value;
-			((coll, data,db) => {
+			((coll, data, db) => {
 				return new Promise((resolve, reject) => {
 					let collection = db.collection(coll);
 					collection.save(data,
@@ -83,8 +83,9 @@ module.exports = (db) => {
 			((data, db) => {
 				return new Promise( (resolve, reject) => {
 					db.createCollection(data.name, (err, resp) => {
-						// console.log(data);
-						if (!err || 1 === resp.ok) {
+						console.log('else', data);
+						// @todo fix (undefined === resp) patch.
+						if (!err || (resp && 1 === resp.ok)) {
 							let collection = db.collection(data.name),
 									schema = {};
 
