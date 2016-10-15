@@ -10,7 +10,7 @@ describe("Docutests - test forms",() => {
     //calling ADD api
     server
     .post('/forms/testForm')
-    .send({name : 'pepito', last : 'terere', age : 20})
+    .send({fields:[{name : 'field1'}, {name : 'field2'}]})
     .expect("Content-type",/json/)
     .expect(200)
     .end((err,res) => {
@@ -21,17 +21,17 @@ describe("Docutests - test forms",() => {
     });
   });
 
-  it("test get testForm",(done) => {
+  it("test get forms", (done) => {
     server
-    .get("/forms/testForm")
+    .get("/forms")
     .expect("Content-type",/json/)
     .expect(200) // THis is HTTP response
-    .end(function(err,res){
+    .end((err,res) => {
       // HTTP status should be 200
       res.status.should.equal(200);
+//console.log(res.body);
       // Error key should be false.
-console.log(res.body);
-      //res.body.error.should.equal(false);
+      // res.body.error.should.equal(false);
       done();
     });
   });
