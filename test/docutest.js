@@ -1,12 +1,12 @@
-var supertest = require("supertest");
-var should = require("should");
+'use stricts';
 
-var server = supertest.agent("http://localhost:1234");
+const supertest = require("supertest");
+const should = require("should");
+const server = supertest.agent("http://localhost:1234");
 
 describe("Docutests - test forms",() => {
 
   it("add testForm",(done) => {
-
     //calling ADD api
     server
     .post('/forms/testForm')
@@ -29,7 +29,6 @@ describe("Docutests - test forms",() => {
     .end((err,res) => {
       // HTTP status should be 200
       res.status.should.equal(200);
-//console.log(res.body);
       // Error key should be false.
       // res.body.error.should.equal(false);
       done();
