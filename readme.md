@@ -1,7 +1,15 @@
-noduplace
+Docuplace
+=
+
+Install
 =
 
   - $ npm install
   - $ bower install
   - $ mongod
-  - $ node app.js
+  - $ npm start
+
+Run Tests.
+=
+
+  - $ npm test
