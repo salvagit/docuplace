@@ -10,8 +10,8 @@ module.exports = (db) => {
 	this.db = db;
 	let forms = express.Router();
 	// @todo find better way
-	forms.get("/:form*?", (req,res)=>get(req,res,db));
-	forms.post("/:form*?", (req,res)=>post(req,res,db));
+	forms.get("/:form*?", (req,res) => get(req,res,db));
+	forms.post("/:form*?", (req,res) => post(req,res,db));
 	return forms;
 };
 
@@ -52,11 +52,9 @@ let get = (req,res,db) => {
 	};
 
 	let getForms = (db) => {
-console.log(db);
 		return new Promise((resolve, reject) => {
 			let collections = [];
 			db.getCollectionNames((err, colNames) => {
-console.log(err, colNames);
 				if (err) reject(err);
 				for (let i = 0; i < colNames.length; i++) {
 					collections.push({name: colNames[i]} );
@@ -81,7 +79,7 @@ console.log(err, colNames);
 };
 
 // method:post
-let post = (req,res) => {
+let post = (req,res, db) => {
 
 	let insertInForm = (coll,data,db) => {
 		return new Promise( (resolve, reject) => {
@@ -95,16 +93,17 @@ let post = (req,res) => {
 	let insertForm = (data, db) => {
 		return new Promise( (resolve, reject) => {
 			db.createCollection(data.name, (err, resp) => {
-				if (!err || 1 === resp.ok) {
-					let collection = db.collection(data.name),
-							schema = {};
-					// prepare schema.
-					data.fields.forEach( el => schema[el.name] = '' );
-					// save schema.
-					collection.save(schema);
-					// resolve promise.
-					resolve(data);
-				} else reject(err);
+				// if err, reject.
+				if (err) reject(err);
+
+				let collection = db.collection(data.name),
+						schema = {};
+				// prepare schema.
+				data.fields.forEach( el => schema[el.name] = '' );
+				// save schema.
+				collection.save(schema);
+				// resolve promise.
+				resolve(data);
 			});
 		});
 	};
@@ -113,7 +112,7 @@ let post = (req,res) => {
 		// get params.
 		let data = {};
 		for (let k in req.body) data[req.body[k].name] = req.body[k].value;
-		insertInForm(form,data,db)
+		insertInForm(req.params.form, data,db)
 		.then((data) => res.json(data));
 	} else {
 		insertForm(req.body,db)
